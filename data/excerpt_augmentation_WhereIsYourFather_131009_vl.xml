@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<Hamlet_nunnery_scene>
+
+
+
+
+<!-- ############################################################################ -->
+<!-- ############################################################################ -->
+<!-- ################################## PLANS ################################### -->
+<!-- ############################################################################ -->
+<!-- ############################################################################ -->
+
+  <plans>
+
+
+	<plan id="P_H_01_1" type="PLA" plantype="Recursive" agent="Hamlet" goaltype="QG" goal_pc="Learning whether Ophelia is honest" 
+	      accomplished="F" print="Hamlet testing Ophelia for honesty">
+	  <sa id="B_0009_2" type="BEL" status="T" mapping="B_0009_TL2"></sa>
+	  <sa id="B_0016" type="BEL" status="T" mapping="B_0016_TL"></sa> 
+	  <sa id="P_H_007" type="PLA" accomplished="T"></sa>
+	  <!-- sa id="P_O_008_1" type="PLA" accomplished="F"></sa --> 
+	  <sa id="B_0017" type="BEL" status="F" mapping="B_0017_TL"></sa> 
+	</plan>
+	
+    <plan id="P_H_007" type="PLA" plantype="Base" agent="Hamlet" goaltype="PG" goal_pc="A_ask_01" accomplished="T" 
+          print="Hamlet Asking rethorically Ophelia about Polonius' location">
+	  <sa id="B_0009" type="BEL" status="T" mapping="B_0009_TL"></sa>
+	  <sa id="A_ask_01" type="ACT" mapping="I_OLI_0027"></sa> 
+	  <sa id="ACC_01" type="ACC" status="T" mapping="ACC_01_TL"></sa> 
+	</plan> 
+		
+    <plan id="P_O_008" type="PLA" plantype="Base" agent="Ophelia" goaltype="PG" goal_pc="A_men_03" accomplished="T" 
+          print="Ophelia lying about Polonius' location">
+	  <sa id="B_0011_2" type="BEL" status="T" mapping="B_0011_TL2"></sa>
+	  <sa id="A_men_03" type="ACT" mapping="I_OLI_0027_1"></sa> 
+	  <sa id="B_0013" type="BEL" status="T" mapping="B_0013_TL"></sa>
+    </plan>
+
+	<plan id="P_O_008_1" type="PLA" plantype="Base" agent="Ophelia" goaltype="PG" goal_pc="A_dir_05" accomplished="F" 
+	      print="Ophelia tells the truth to Hamlet about Polonius' location">
+	  <sa id="ACC_P_O_008_1" type="ACC" mapping="ACC_P_O_008_1_TL" status="F"></sa>
+	  <!-- sa id="ACC_01" type="ACC" status="T" mapping="ACC_01_TL"></sa> 
+	  <sa id="A_dir_05" type="ACT"></sa>
+	  <sa id="B_0015" type="BEL" status="F"></sa -->	
+	</plan>
+	
+
+
+  </plans>
+
+<!-- ############################################################################ -->
+<!-- ############################################################################ -->
+<!-- ################################ TIMELINE ################################## -->
+<!-- ############################################################################ -->
+<!-- ############################################################################ -->
+
+  <timeline>
+
+    <te id="SS_OLI_015" type="storystate">
+	  <state id="B_0009_TL2" type="BEL" agent="Hamlet" propositionalContent="SOA_sta_01" print="Hamlet believes Polonius is in the Room" status="T"></state>	  
+      <state id="B_0016_TL" type="BEL" agent="Hamlet" propositionalContent="B_0011" print="Hamlet believes Ophelia believes Polonius in the Room" status="T"></state>
+      <state id="B_0011_TL2" type="BEL" agent="Ophelia" propositionalContent="SOA_sta_01" print="Ophelia believes Polonius in the Room" status="T"></state>
+	  <state id="B_0009_TL" type="BEL" agent="Hamlet" propositionalContent="SOA_sta_01" print="Hamlet believes Polonius is in the Room" status="T"></state>	  
+    </te>
+
+    <te id="M_OLI_012" type="unit">
+      <incident id="I_OLI_0027" type="A" print="Hamlet asking Ophelia about(Polonius' location) Message('Where’s your father?')"> </incident>
+	  <incident id="I_OLI_0027_1" type="A" print="Ophelia lying Hamlet about(Polonius' location) Message('At home, my lord.')"> </incident>
+    </te>
+
+    <te id="SS_OLI_016" type="storystate">
+      <state id="ACC_01_TL" type="ACC" print="Hamlet asking Ophelia about Polonius' location ACCOMPLISHED" status="T"></state>
+      <state id="B_0013_TL" type="BEL" agent="Ophelia" propositionalContent="B_0012" print="Ophelia believes Hamlet believes Polonius in his Room" status="T"></state>
+      <state id="ACC_P_O_008_1_TL" type="ACC" print="Ophelia telling the truth about Polonius' location NOT ACCOMPLISHED" status="F"></state>
+      <state id="B_0017_TL" type="BEL" agent="Ophelia" propositionalContent="V_0004" print="Hamlet believes Ophelia is honest" status="F"></state>
+    </te>
+ 	
+  </timeline>
+
+
+</Hamlet_nunnery_scene>

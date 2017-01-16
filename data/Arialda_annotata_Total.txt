@@ -1,0 +1,96 @@
+
+
+<drama>
+
+
+<!-- PLAY -->
+
+<plays>
+
+  <play id="Arialda" type="PLY" print="Arialda" mapping_init="???" mapping_end="???" /> 
+
+</plays>
+
+
+<!-- ACTS -->
+
+<acts>
+
+  <act  id="I TEMPO" type="ATC" print="Primo Tempo" mapping_init="???" mapping_end="???" /> 
+
+  <act  id="II TEMPO" type="ATC" print="Secondo Tempo" mapping_init="???" mapping_end="???" /> 
+  
+</acts>
+
+
+
+<!-- SCENES -->
+
+<scenes>
+
+<scene  id="I ACT, I SCENE" type="SCE" print="The Ghost of Hamlet's father appears to Horatio and two sentinels. They wonder what it portends and decide that Hamlet should be told." mapping_init="E01" mapping_end="E03" >
+</scene> 
+
+
+</scenes>
+
+
+<!-- TIMELINE OF INCIDENTS -->
+
+<timelines>
+
+<timeline id="Timeline_total">
+
+<te id="INC_01" 
+    type="UNI" 
+    print="L'Angelo e l'Adele si incontrano intorno alla cava.">
+</te>
+
+
+
+</timeline>
+
+</timelines>
+
+
+<!-- PLANS: WHAT CHARACTERS INTEND TO DO -->
+
+
+<plans>
+  <plan id="Angelo_01" type="PLA" plantype="Base" 
+        print="Angelo INTENDE far immediatamente l'amore con Adele."
+        agent="Angelo" 
+        goal="G_Angelo_001: Angelo VUOLE far l'amore con Adele." 
+        accomplished="F" 
+        mapping_init="INC_01" mapping_end="INC_01" 
+        rec_level="0"> 
+  </plan>
+  <plan id="Adele_01" type="PLA" plantype="Base" 
+        print="Adele INTENDE condurre Angelo in un luogo appartato per far l'amore."
+        agent="Adele" 
+        goal="G_Adele_001: Adele VUOLE far l'amore con Angelo." 
+        accomplished="T" 
+        mapping_init="INC_01" mapping_end="INC_01" 
+        rec_level="0"> 
+  </plan>
+
+ </plans>
+
+
+
+<!-- REPOSITORY -->
+
+<repository>
+
+<rep_elem id="Angelo" type="AGT" print="L'Angelo"> </rep_elem>
+<rep_elem id="Adele" type="AGT" print="L'Adele"> </rep_elem>
+
+ </repository>
+
+
+</drama>
+
+
+
+
+
