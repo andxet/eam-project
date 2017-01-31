@@ -96,54 +96,54 @@
 
 
 <plans>
-  <plan id="P_Angelo_01" type="PLA" plantype="Base" 
-        print="P_Angelo_01: Angelo INTENDE far immediatamente l'amore con Adele."
+  <plan id="P_An_0001" type="PLA" plantype="Base" 
+        print="P_An_0001: Angelo INTENDE far immediatamente l'amore con Adele."
         agent="Angelo" 
-        goal="G_Angelo_001: Angelo VUOLE far l'amore con Adele." 
+        goal="G_An_0001: Angelo VUOLE far l'amore con Adele." 
         accomplished="F" 
         mapping_init="INC_01" mapping_end="INC_01" 
         rec_level="0"> 
   </plan>
-  <plan id="P_Adele_01" type="PLA" plantype="Base" 
-        print="P_Adele_01: Adele INTENDE condurre Angelo in un luogo appartato per far l'amore."
+  <plan id="P_Ad_0001" type="PLA" plantype="Base" 
+        print="P_Ad_0001: Adele INTENDE condurre Angelo in un luogo appartato per far l'amore."
         agent="Adele" 
-        goal="G_Adele_001: Adele VUOLE far l'amore con Angelo." 
+        goal="G_Ad_0001: Adele VUOLE far l'amore con Angelo." 
         accomplished="T" 
         mapping_init="INC_01" mapping_end="INC_01" 
         rec_level="0"> 
   </plan>
-  <plan id="P_Lino_01" type="PLA" plantype="Base" 
-        print="P_Lino_01: Lino INTENDE attendere istruzioni da Eros."
+  <plan id="P_Li_0001" type="PLA" plantype="Base" 
+        print="P_Li_0001: Lino INTENDE attendere istruzioni da Eros."
         agent="Lino" 
-        goal="G_Lino_001: Lino VUOLE ricevere istruzioni." 
+        goal="G_Li_0001: Lino VUOLE ricevere istruzioni." 
         accomplished="T" 
         mapping_init="INC_02" mapping_end="INC_02" 
         rec_level="0"> 
   </plan>
-  <plan id="P_Eros_01" type="PLA" plantype="Base" 
-        print="P_Eros_01: Eros INTENDE parlare con Lino del pericolo ma finisce per mandarlo a casa."
+  <plan id="P_Er_0001" type="PLA" plantype="Base" 
+        print="P_Er_0001: Eros INTENDE parlare con Lino del pericolo ma finisce per mandarlo a casa."
         agent="Eros" 
-        goal="G_Eros_001: Eros VUOLE mattere in guardia Lino di un pericolo generico" 
+        goal="G_Er_0001: Eros VUOLE mattere in guardia Lino di un pericolo generico" 
         accomplished="F" 
         mapping_init="INC_02" mapping_end="INC_02" 
         rec_level="0"> 
   </plan>
   
   <!-- Added by me -->
-  <plan id="P_Ar_01" type="PLA" plantype="Base" 
-        print="P_Ar_01: Arialda INTENDE fare i conti con Amilcare e strappargli via Gaetana."
+  <plan id="P_Ar_0001" type="PLA" plantype="Base" 
+        print="P_Ar_0001: Arialda INTENDE fare i conti con Amilcare e strappargli via Gaetana."
         agent="Arialda" 
-        goal="G_Eros_001: Arialda VUOLE vendicarsi con Amilcare e Gaetana" 
+        goal="G_Ar_0001: Arialda VUOLE vendicarsi con Amilcare e Gaetana" 
         accomplished="F" 
-        mapping_init="INC_02" mapping_end="INC_02" 
+        mapping_init="INC_25" mapping_end="INC_25" 
         rec_level="0"> 
   </plan>
-  <plan id="P_Eros_01" type="PLA" plantype="Base" 
-        print="P_Eros_01: Arialda INTENDE liberarsi del ricordo di Luigi che le impedisce di innamorarsi con altri uomini."
+  <plan id="P_Ar_0002" type="PLA" plantype="Base" 
+        print="P_Ar_0002: Arialda INTENDE liberarsi del ricordo di Luigi che le impedisce di innamorarsi con altri uomini."
         agent="Eros" 
-        goal="G_Eros_001: Eros VUOLE liberarsi liberarsi del suo passato" 
+        goal="G_Ar_0002: Eros VUOLE liberarsi liberarsi del peso del suo passato" 
         accomplished="F" 
-        mapping_init="INC_02" mapping_end="INC_02" 
+        mapping_init="INC_25" mapping_end="INC_25" 
         rec_level="0"> 
   </plan>
   <!-- End added by me -->
