@@ -128,6 +128,25 @@
         mapping_init="INC_02" mapping_end="INC_02" 
         rec_level="0"> 
   </plan>
+  
+  <!-- Added by me -->
+  <plan id="P_Ar_01" type="PLA" plantype="Base" 
+        print="P_Ar_01: Arialda INTENDE fare i conti con Amilcare e strappargli via Gaetana."
+        agent="Arialda" 
+        goal="G_Eros_001: Arialda VUOLE vendicarsi con Amilcare e Gaetana" 
+        accomplished="F" 
+        mapping_init="INC_02" mapping_end="INC_02" 
+        rec_level="0"> 
+  </plan>
+  <plan id="P_Eros_01" type="PLA" plantype="Base" 
+        print="P_Eros_01: Arialda INTENDE liberarsi del ricordo di Luigi che le impedisce di innamorarsi con altri uomini."
+        agent="Eros" 
+        goal="G_Eros_001: Eros VUOLE liberarsi liberarsi del suo passato" 
+        accomplished="F" 
+        mapping_init="INC_02" mapping_end="INC_02" 
+        rec_level="0"> 
+  </plan>
+  <!-- End added by me -->
 
  </plans>
 
