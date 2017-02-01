@@ -1,2 +1,6 @@
 /.DS_Store
 /data/*.DS_Store
+/application.macosx/*.DS_Store
+/application.windows64
+/application.windows32
+/application.macosx
