@@ -140,7 +140,7 @@
   </plan>
   <plan id="P_Ar_0002" type="PLA" plantype="Base" 
         print="P_Ar_0002: Arialda INTENDE liberarsi del ricordo di Luigi che le impedisce di innamorarsi con altri uomini."
-        agent="Eros" 
+        agent="Arialda" 
         goal="G_Ar_0002: Eros VUOLE liberarsi liberarsi del peso del suo passato" 
         accomplished="F" 
         mapping_init="INC_25" mapping_end="INC_25" 
