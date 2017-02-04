@@ -24,21 +24,24 @@ class DrammarScreen {
     phrases.add(aPhrase);
   }
 
-  void AddPhrase(String Name, String text, SoundFile audioFile)
+  void AddPhrase(String Name, String text, AudioPlayer audioFile)
   {
     AddPhrase( Name, text, audioFile, false);
   }
 
   ////////////////////////////////////
-  void AddPhrase(String Name, String text, SoundFile audioFile, boolean centered)
+  void AddPhrase(String Name, String text, AudioPlayer audioFile, boolean centered)
   {
+    drammar_phrase createdPhrase = null;
     for (String phrase : text.split("\n"))
     {      
-      println(phrase);
-      phrases.add(new drammar_phrase(this, Name, phrase, ypos, 2, audioFile, centered));
+      createdPhrase = new drammar_phrase(this, Name, phrase, ypos, 2, null, centered);
+      phrases.add(createdPhrase);
       Name = "";//reset the name, so that it appear only in the first phrase
       ypos += 35;
     }
+    if (audioFile != null && createdPhrase != null)
+      createdPhrase.sound = audioFile;
   }
 
   //////////////////////////////////

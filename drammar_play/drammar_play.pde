@@ -8,12 +8,18 @@ static final String background_name = "stireria2_bak.jpg";
 static float frameR = 0;
 static int leftMargin;
 
-SoundFile steps;
-SoundFile punch;
-SoundFile broom;
-SoundFile coffin;
-SoundFile laugh;
-SoundFile photo;
+import ddf.minim.*;
+
+Minim minim;
+AudioPlayer loop;
+
+AudioPlayer steps;
+AudioPlayer punch;
+AudioPlayer punch2;
+AudioPlayer broom;
+AudioPlayer coffin;
+AudioPlayer laugh;
+AudioPlayer photo;
 
 
 ArrayList<DrammarScreen> screens = new ArrayList();
@@ -37,7 +43,7 @@ PImage background;
  L'EROS Chiaro? Chiarissimo.
  L'ARIALDA E cosa t'aspettavi, le mezzemisure da quel maiale là, che quel che ha, e per cui gli giran intorno anche le vedove dell'Africa, se l'è fatto succhiando il sangue della povera gente come noi? La terrona! Sì, perché io avrò paura d'una povera scema come quella vedova là!
  L'ALFONSINA E che tipo è, poi?
- L'ARlALDA Sarà calda anche lei! Perché, qui, ormai, si va avanti a furia di gradi! (Avvicinandosi alla credenza e fissando la fotografia del Luigi) Ma se credi d'aver vinto la partita e d'essermi tornato addosso un'altra volta ... Senti, parlo conte! Ah, ecco! Se credi cosi, ti sbagli! Prima d'impalmare quella là, i conti, il Candidezza, dovrà farli con me! Capito? E va' pur avanti a ridere, che tanto 'sta faccia qui ce l'avevi anche quando i becchini t’han saldato il coperchio! Ah, ecco! Perché almeno quello lo saprò! "Pare che ride ... "; siccome, conciato com'eri, non potevano dire che parevi un angelo. Ma io, prima di tornar sotto la tua grinfia, quella porca là gliela strappo di mano con la mia. Capito? E non mi fermerò davanti a niente! E più tu andrai avanti a smangiarmi la coscienza e la carne, e più andrò avanti io! 
+ L'ARlALDA Sarà calda anche lei! Perché, qui, ormai, si va avanti a furia di gradi! (Avvicinandosi alla credenza e fissando la fotografia del Luigi) Ma se credi d'aver vinto la partita e d'essermi tornato addosso un'altra volta ... Senti, parlo conte! Ah, ecco! Se credi così, ti sbagli! Prima d'impalmare quella là, i conti, il Candidezza, dovrà farli con me! Capito? E va' pur avanti a ridere, che tanto 'sta faccia qui ce l'avevi anche quando i becchini t’han saldato il coperchio! Ah, ecco! Perché almeno quello lo saprò! "Pare che ride ... "; siccome, conciato com'eri, non potevano dire che parevi un angelo. Ma io, prima di tornar sotto la tua grinfia, quella porca là gliela strappo di mano con la mia. Capito? E non mi fermerò davanti a niente! E più tu andrai avanti a smangiarmi la coscienza e la carne, e più andrò avanti io! 
  L'ALFONSINA Arialda... 
  L'ARIALDA Beh? Cosa c'è da guardarmi con quella faccia lì? Cosa vi siete messi in testa, che son diventata matta? Volete vedere che valore do più, io, a un povero scemo come questo. (Getta a terra la fotografia): Zero! Zero assoluto!
  L'ALFONSINA Arialda…
@@ -48,16 +54,20 @@ PImage background;
 void setup()
 {
   Instance = this;
-  System.out.println("Hello!");
+
   size(1024, 768);//HD Ready
   background = loadImage(data_folder + images_folder + background_name);
-  println(data_folder + sound_folder + "steps.wav");
-  steps = new SoundFile(this, sound_folder + "steps.wav");
-  punch = new SoundFile(this, sound_folder + "punch.wav");
-  broom = new SoundFile(this, sound_folder + "broom-sweeping.wav");
-  coffin = new SoundFile(this, sound_folder + "closing-coffin.wav");
-  laugh = new SoundFile(this, sound_folder + "woman-laugh.wav");
-  photo = new SoundFile(this, sound_folder + "photo-throwing.wav");
+
+  minim = new Minim(this);
+
+  loop = minim.loadFile(music_folder + "loop.wav");
+  steps = minim.loadFile(sound_folder + "steps.wav");
+  punch = minim.loadFile(sound_folder + "punch.wav");
+  punch2 = minim.loadFile(sound_folder + "punch.wav");//dumb way to play this sound two times (i have no more time)
+  broom = minim.loadFile(sound_folder + "broom-sweeping.wav");
+  coffin = minim.loadFile(sound_folder + "closing-coffin.wav");
+  laugh = minim.loadFile(sound_folder + "woman-laugh.wav");
+  photo = minim.loadFile(sound_folder + "photo-throwing.wav");
 
   tint(255, 126);
   background.resize(1024, 768);
@@ -102,7 +112,7 @@ void setup()
   screens.add(aScreen);
 
   aScreen = new DrammarScreen(2, 400);
-  aScreen.AddPhrase("ARIALDA", "E cosa t'aspettavi, le mezzemisure da quel maiale là,\nche quel che ha, e per cui gli giran intorno\nanche le vedove dell'Africa,\nse l'è fatto succhiando il sangue della povera gente come noi?", null);
+  aScreen.AddPhrase("ARIALDA", "E cosa t'aspettavi, le mezze misure da quel maiale là,\nche quel che ha, e per cui gli giran intorno\nanche le vedove dell'Africa,\nse l'è fatto succhiando il sangue della povera gente come noi?", null);
   screens.add(aScreen);
 
   aScreen = new DrammarScreen(2, 400);
@@ -119,8 +129,8 @@ void setup()
   screens.add(aScreen);
 
   aScreen = new DrammarScreen(2, 350);
-  aScreen.AddPhrase("", "(Avvicinandosi alla credenza e fissando la fotografia del Luigi)", /*suono passi*/steps, true);
-  aScreen.AddPhrase("ARIALDA", "Ma se credi d'aver vinto la partita\ne d'essermi tornato addosso un'altra volta...\nSenti, parlo con te!\nAh, ecco! Se credi cosi, ti sbagli!", null);
+  aScreen.AddPhrase("", "(Avvicinandosi alla credenza e fissando la fotografia del Luigi)", steps, true);
+  aScreen.AddPhrase("ARIALDA", "Ma se credi d'aver vinto la partita\ne d'essermi tornato addosso un'altra volta...\nSenti, parlo con te!\nAh, ecco! Se credi così, ti sbagli!", null);
   screens.add(aScreen);
 
   aScreen = new DrammarScreen(2, 400);
@@ -128,7 +138,7 @@ void setup()
   screens.add(aScreen);
 
   aScreen = new DrammarScreen(5, 350);
-  aScreen.AddPhrase("ARIALDA", "E va' pur avanti a ridere,\nche tanto 'sta faccia qui ce l'avevi\nanche quando i becchini t’han saldato il coperchio!", /*suono saldatura*/coffin);
+  aScreen.AddPhrase("ARIALDA", "E va' pur avanti a ridere,\nche tanto 'sta faccia qui ce l'avevi\nanche quando i becchini t’han saldato il coperchio!", coffin);
   aScreen.AddPhrase("", "Ah, ecco! Perché almeno quello lo saprò!\n", null);
   screens.add(aScreen);
 
@@ -148,7 +158,7 @@ void setup()
 
   aScreen = new DrammarScreen(5, 400);
   aScreen.AddPhrase("", "(Getta a terra la fotografia)", /*suono fotografia*/photo, true);
-  aScreen.AddPhrase("ARIALDA", "Zero! Zero assoluto!", /*suono pugno*/punch);
+  aScreen.AddPhrase("ARIALDA", "Zero! Zero assoluto!", /*suono pugno*/punch2);
   screens.add(aScreen);
 
   aScreen = new DrammarScreen(2, 400);
@@ -165,6 +175,7 @@ void setup()
 
   aScreen.start();  
   lastFrame = millis();
+  loop.loop();
 }
 
 

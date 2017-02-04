@@ -12,10 +12,10 @@ class drammar_phrase {
   boolean centered = false;
 
   import processing.sound.*;
-  SoundFile sound;
+  AudioPlayer sound;
 
   //Constructor//////////////////
-  drammar_phrase(DrammarScreen screen, String name, String text, int verticalPosition, float fadeTime, SoundFile soundFile)
+  drammar_phrase(DrammarScreen screen, String name, String text, int verticalPosition, float fadeTime, AudioPlayer soundFile)
   {
     f = loadFont("data/" + font_name);
     this.screen = screen;
@@ -28,7 +28,7 @@ class drammar_phrase {
   }
 
   //centered
-  drammar_phrase(DrammarScreen screen, String name, String text, int verticalPosition, float fadeTime, SoundFile soundFile, boolean centered)
+  drammar_phrase(DrammarScreen screen, String name, String text, int verticalPosition, float fadeTime, AudioPlayer soundFile, boolean centered)
   {
     f = loadFont("data/" + font_name);
     this.screen = screen;
