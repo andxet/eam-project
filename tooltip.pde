@@ -78,7 +78,10 @@ class ToolTip{
     if (mText.equals("L'Angelo e l'Adele si incontrano intorno alla cava per amoreggiare e pianificare il matrimonio.")) {
       launch("/Users/vincenzolombardo/Documents/Processing3/sketch_Arialda_example/application.macosx/sketch_Arialda_example.app");
     }
-    if (mText.equals("Il Lino e l'Eros si incontrano alla cava perché Eros deve informare Lino di qualcosa, ma finisce per mandarlo a casa.")) {
+    else if (mText.equals("L'Arialda fa una filippica contro il mondo e giura vendetta.")) {
+      launch("/Users/andrea/progetti/drammar_vistool/drammar_play/application.macosx/drammar_play.app");
+    }
+    else if (mText.equals("Il Lino e l'Eros si incontrano alla cava perché Eros deve informare Lino di qualcosa, ma finisce per mandarlo a casa.")) {
       inc02.play();
       imageMode(CENTER); image(inc02, width/2, height/2); 
     }
@@ -114,7 +117,7 @@ class ToolTip{
 } // END CLASS ToolTip
 
 String[] split_string_into_lines (String s, int line_size) {
-  println("s = " + s); 
+  //println("s = " + s); 
   // extract all the original lines, according to RETURNs
   String original_lines[] = split(s,"\n");
   String actual_lines1[] = new String[s.length()];
