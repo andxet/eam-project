@@ -1,20 +1,20 @@
-static final String data_folder = "../data/"; //<>//
+static final String data_folder = "data/"; //<>//
 static final String xml_file = "inc_25.xml";
 static final String sound_folder = "sound/";
 static final String images_folder = "images/";
 static final String music_folder = "music/";
 static final String loop_name = "";
-static final String background_name = "stireria_bak.jpg";
+static final String background_name = "stireria2_bak.jpg";
 static float frameR = 0;
 static int leftMargin;
 
-String[] sound_names = {
-  "", 
-  "", 
-  "", 
-  "", 
-  ""
-};
+SoundFile steps;
+SoundFile punch;
+SoundFile broom;
+SoundFile coffin;
+SoundFile laugh;
+SoundFile photo;
+
 
 ArrayList<DrammarScreen> screens = new ArrayList();
 int currentScreen = 0;
@@ -51,36 +51,117 @@ void setup()
   System.out.println("Hello!");
   size(1024, 768);//HD Ready
   background = loadImage(data_folder + images_folder + background_name);
+  println(data_folder + sound_folder + "steps.wav");
+  steps = new SoundFile(this, sound_folder + "steps.wav");
+  punch = new SoundFile(this, sound_folder + "punch.wav");
+  broom = new SoundFile(this, sound_folder + "broom-sweeping.wav");
+  coffin = new SoundFile(this, sound_folder + "closing-coffin.wav");
+  laugh = new SoundFile(this, sound_folder + "woman-laugh.wav");
+  photo = new SoundFile(this, sound_folder + "photo-throwing.wav");
 
   tint(255, 126);
   background.resize(1024, 768);
-  //frameRate(frameR);
-  DrammarScreen aScreen = new DrammarScreen(5);
-  aScreen.AddPhrase("ARIALDA", "Destino? Ma se destino è, si tratta del destino porco che\nm'è venuto addosso da quando quella li ha avuto la bell'idea\ndi mettermi al mondo!", 400, null);
+
+  DrammarScreen aScreen = new DrammarScreen(5, 300);
+  aScreen.AddPhrase("", "L'Arialda\n\n\n\n\n", null, true);
+  aScreen.AddPhrase("Scena INC_25", "L'Arialda fa una filippica contro il mondo e giura vendetta.", null);
   screens.add(aScreen);
 
-  aScreen = new DrammarScreen(2);
-  aScreen.AddPhrase("ALFONSINA", "Arialda!", 400, null);
+  aScreen = new DrammarScreen(5, 350);
+  aScreen.AddPhrase("ARIALDA", "Destino?", /*suono pugno*/punch);
+  aScreen.AddPhrase("", "Ma se destino è, si tratta del destino porco che\nm'è venuto addosso da quando quella li ha avuto la bell'idea\ndi mettermi al mondo!", null);
   screens.add(aScreen);
 
-  aScreen = new DrammarScreen(2);
-  aScreen.AddPhrase("ARIALDA", "Arialda, cosa? Perché, a me, che regali m'ha mai fatto", 300, null);
-  aScreen.AddPhrase("", "la vita da quando ho aperto gli occhi? Avanti!", 400, null);   
+  aScreen = new DrammarScreen(2, 400);
+  aScreen.AddPhrase("ALFONSINA", "Arialda!", null);
   screens.add(aScreen);
 
-  aScreen = new DrammarScreen(1);
-  aScreen.AddPhrase("", "(Una pausa)", 400, null);
+  aScreen = new DrammarScreen(2, 350);
+  aScreen.AddPhrase("ARIALDA", "Arialda, cosa? Perché, a me, che regali m'ha mai fatto\nla vita da quando ho aperto gli occhi? Avanti!", null);
   screens.add(aScreen);
 
-  aScreen = new DrammarScreen(2);
-  aScreen.AddPhrase("ARIALDA", "Destino, sì! Ma chiamatelo calore, che è meglio!", 300, null);
-  aScreen.AddPhrase("", "Almeno si sa prima di cominciare, dove si deve sbattere!", 400, null);
-
+  aScreen = new DrammarScreen(1, 400);
+  aScreen.AddPhrase("", "(Una pausa)", null, true);
   screens.add(aScreen);
 
-  aScreen = new DrammarScreen(5);
-  aScreen.AddPhrase("", "", 400, null);
+  aScreen = new DrammarScreen(2, 300);
+  aScreen.AddPhrase("ARIALDA", "Destino, sì! Ma chiamatelo calore, che è meglio!\nAlmeno si sa prima di cominciare, dove si deve sbattere!", null);
   screens.add(aScreen);
+
+  aScreen = new DrammarScreen(2, 400);
+  aScreen.AddPhrase("ALFONSINA", "Arialda!  Adesso, basta!", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(5, 350);
+  aScreen.AddPhrase("ARlALDA", "Calore, cara la mia mamma! Calore!\nMica a tutte capita d'aver come spasimante\nuna pasta molle com'è capitato a me!\nUno che ha cominciato a muoversi solo\ndopo che gli han dato i santissimi!\nCi son anche quelli che bollono!", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(2, 400);
+  aScreen.AddPhrase("ALFONSINA", "Ma, senti, Eros, te l'ha proprio detto chiaro?", null);
+  aScreen.AddPhrase("EROS", "Chiaro? Chiarissimo.", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(2, 400);
+  aScreen.AddPhrase("ARIALDA", "E cosa t'aspettavi, le mezzemisure da quel maiale là,\nche quel che ha, e per cui gli giran intorno\nanche le vedove dell'Africa,\nse l'è fatto succhiando il sangue della povera gente come noi?", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(2, 400);
+  aScreen.AddPhrase("ARIALDA", "La terrona!", /*suono pugno*/null);
+  aScreen.AddPhrase("", "Sì, perché io avrò paura d'una povera scema\ncome quella vedova là!", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(2, 400);
+  aScreen.AddPhrase("ALFONSINA", "E che tipo è, poi?\n", null);
+  //screens.add(aScreen);
+
+  //aScreen = new DrammarScreen(2, 400);
+  aScreen.AddPhrase("ARIALDA", "Sarà calda anche lei! Perché, qui, ormai,\nsi va avanti a furia di gradi!", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(2, 350);
+  aScreen.AddPhrase("", "(Avvicinandosi alla credenza e fissando la fotografia del Luigi)", /*suono passi*/steps, true);
+  aScreen.AddPhrase("ARIALDA", "Ma se credi d'aver vinto la partita\ne d'essermi tornato addosso un'altra volta...\nSenti, parlo con te!\nAh, ecco! Se credi cosi, ti sbagli!", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(2, 400);
+  aScreen.AddPhrase("ARIALDA", "Prima d'impalmare quella là, i conti,\nil Candidezza, dovrà farli con me!\nCapito?", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(5, 350);
+  aScreen.AddPhrase("ARIALDA", "E va' pur avanti a ridere,\nche tanto 'sta faccia qui ce l'avevi\nanche quando i becchini t’han saldato il coperchio!", /*suono saldatura*/coffin);
+  aScreen.AddPhrase("", "Ah, ecco! Perché almeno quello lo saprò!\n", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(2, 350);
+  aScreen.AddPhrase("ARIALDA", "\"Pare che ride ... \"; Siccome, conciato com'eri,\nnon potevano dire che parevi un angelo.\nMa io, prima di tornar sotto la tua grinfia,\nquella porca là gliela strappo di mano con la mia.", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(2, 300);
+  aScreen.AddPhrase("ARIALDA", "Capito?\nE non mi fermerò davanti a niente!\nE più tu andrai avanti a smangiarmi la coscienza e la carne,\ne più andrò avanti io!", null);
+  aScreen.AddPhrase("ALFONSINA", "Arialda...", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(5, 300);
+  aScreen.AddPhrase("ARIALDA", "Beh?\nCosa c'è da guardarmi con quella faccia lì?\nCosa vi siete messi in testa,\nche son diventata matta?", /*suono matta*/laugh);
+  aScreen.AddPhrase("", "Volete vedere che valore do più,\nio,\na un povero scemo come questo.", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(5, 400);
+  aScreen.AddPhrase("", "(Getta a terra la fotografia)", /*suono fotografia*/photo, true);
+  aScreen.AddPhrase("ARIALDA", "Zero! Zero assoluto!", /*suono pugno*/punch);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(2, 400);
+  aScreen.AddPhrase("ALFONSINA", "Arialda...", null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(5, 400);
+  aScreen.AddPhrase("ARIALDA", "E adesso qui la scopa,\nqui la scopa che lo mandiamo fuori del tutto!", broom/*suono scopa*/);
+  screens.add(aScreen);
+
+  /*aScreen = new DrammarScreen(5, 400);
+   aScreen.AddPhrase("", "", null);
+   screens.add(aScreen);*/
 
   aScreen.start();  
   lastFrame = millis();

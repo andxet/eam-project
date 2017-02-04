@@ -9,6 +9,7 @@ class drammar_phrase {
   float alpha = 0;
   float fadeTime;
   float multiplier = 1;
+  boolean centered = false;
 
   import processing.sound.*;
   SoundFile sound;
@@ -26,6 +27,20 @@ class drammar_phrase {
     this.sound = soundFile;
   }
 
+  //centered
+  drammar_phrase(DrammarScreen screen, String name, String text, int verticalPosition, float fadeTime, SoundFile soundFile, boolean centered)
+  {
+    f = loadFont("data/" + font_name);
+    this.screen = screen;
+    if (name.length() > 0)
+      this.name = name + ": ";
+    this.text = text;
+    this.verticalPosition = verticalPosition;  
+    this.fadeTime = fadeTime;
+    this.sound = soundFile;
+    this.centered = centered;
+  }
+
   //////////////////////////////
   void Update()
   {
@@ -33,12 +48,14 @@ class drammar_phrase {
     if (this.name != null && this.name.length() > 0)
     {
       drammar_play.leftMargin = (int)textWidth(this.name);
-      println(drammar_play.leftMargin);
     }    
-    
+
     textFont(f);
     stroke(230, 230, 230);
-    textAlign(LEFT);
+    if (centered)    
+      textAlign(CENTER);
+    else
+      textAlign(LEFT);
 
     //Show the name if present
     if (name != null)
@@ -49,7 +66,10 @@ class drammar_phrase {
 
     //Show the phrase
     fill(0, 0, 0, alpha);
-    text(text, drammar_play.leftMargin + 15, verticalPosition);
+    if (centered)    
+      text(text, width/2, verticalPosition);
+    else
+      text(text, drammar_play.leftMargin + 15, verticalPosition);
 
     //Manage the fade in/out
     if ((multiplier > 0 && alpha == 255) || (multiplier < 0 && alpha == 0))

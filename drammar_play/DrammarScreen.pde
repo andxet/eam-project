@@ -5,11 +5,13 @@ class DrammarScreen {
   int currentPhraseIndex = 0;
   drammar_phrase currentPhrase; 
   boolean start = false;
+  int ypos = 0;
 
   int state = 0;//0 = fade in, 1 = mantain, 2 = fade out
 
   //Constructor
-  DrammarScreen(float duration) {
+  DrammarScreen(float duration, int ypos) {
+    this.ypos = ypos;
     timeBetweenPhrases = duration;
     phrases = new ArrayList();  
     currentTime = 0;
@@ -22,10 +24,21 @@ class DrammarScreen {
     phrases.add(aPhrase);
   }
 
-  ////////////////////////////////////
-  void AddPhrase(String Name, String text, int yPos, SoundFile audioFile)
+  void AddPhrase(String Name, String text, SoundFile audioFile)
   {
-    phrases.add(new drammar_phrase(this, Name, text, yPos, 1, audioFile));
+    AddPhrase( Name, text, audioFile, false);
+  }
+
+  ////////////////////////////////////
+  void AddPhrase(String Name, String text, SoundFile audioFile, boolean centered)
+  {
+    for (String phrase : text.split("\n"))
+    {      
+      println(phrase);
+      phrases.add(new drammar_phrase(this, Name, phrase, ypos, 2, audioFile, centered));
+      Name = "";//reset the name, so that it appear only in the first phrase
+      ypos += 35;
+    }
   }
 
   //////////////////////////////////
@@ -39,7 +52,7 @@ class DrammarScreen {
     }
   }
 
-  ///////////////////////////////////7
+  ///////////////////////////////////
   void Update()
   {
     if (state == 0)
@@ -79,7 +92,7 @@ class DrammarScreen {
   void EndFadeOut()
   {
     currentPhraseIndex--;
-    if(currentPhraseIndex == 0)
+    if (currentPhraseIndex == 0)
       drammar_play.Instance.NextScreen();
   }
 }
