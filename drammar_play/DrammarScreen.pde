@@ -8,7 +8,8 @@ class DrammarScreen {
 
   int state = 0;//0 = fade in, 1 = mantain, 2 = fade out
 
-  DrammarScreen() {
+  DrammarScreen(float duration) {
+    timeBetweenPhrases = duration;
     phrases = new ArrayList();  
     currentTime = 0;
     start = false;
@@ -18,10 +19,10 @@ class DrammarScreen {
   {
     phrases.add(aPhrase);
   }
-  
+
   void AddPhrase(String Name, String text, int yPos, SoundFile audioFile)
   {
-    phrases.add(new drammar_phrase(aScreen, Name, text, yPos, 2, audioFile));  
+    phrases.add(new drammar_phrase(this, Name, text, yPos, 1, audioFile));
   }
 
   void start()
@@ -47,9 +48,15 @@ class DrammarScreen {
         phrases.get(i).Update();
       currentTime += drammar_play.frameR;
       if (currentTime > timeBetweenPhrases)
+      {
+        for (int i = 0; i < phrases.size(); i++)
+          phrases.get(i).FadeOut();
         state++;
+      }
     } else if (state == 2)
     {
+      for (int i = 0; i < phrases.size(); i++)
+        phrases.get(i).Update();
     }
   }
 
@@ -64,5 +71,8 @@ class DrammarScreen {
 
   void EndFadeOut()
   {
+    currentPhraseIndex--;
+    if(currentPhraseIndex == 0)
+      drammar_play.Instance.NextScreen();
   }
 }

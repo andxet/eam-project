@@ -30,13 +30,16 @@ class drammar_phrase {
     stroke(230, 230, 230);
     textAlign(LEFT);
 
-    fill(230, 30, 30, alpha);
-    text(name, 10, verticalPosition);
+    if (name.length() > 2)
+    {
+      fill(230, 30, 30, alpha);
+      text(name, 10, verticalPosition);
+    }
 
     fill(0, 0, 0, alpha);
     text(text, textWidth(name) + 15, verticalPosition);
     println(alpha);
-    if((multiplier > 0 && alpha == 255) || (multiplier < 0 && alpha == 0))
+    if ((multiplier > 0 && alpha == 255) || (multiplier < 0 && alpha == 0))
       return;
     if (alpha <= 255 && alpha >= 0) {
       float prealpha = alpha;
@@ -46,7 +49,7 @@ class drammar_phrase {
       {
         alpha = 255;
         screen.EndFadeIn();
-        if(sound != null)
+        if (sound != null)
           sound.play();
       }
       if (alpha < 0)
