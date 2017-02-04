@@ -6,6 +6,8 @@ static final String music_folder = "music/";
 static final String loop_name = "";
 static final String background_name = "stireria_bak.jpg";
 static float frameR = 0;
+static int leftMargin;
+
 String[] sound_names = {
   "", 
   "", 
@@ -41,6 +43,8 @@ PImage background;
  L'ALFONSINA Arialda…
  L'ARIALDA E adesso qui la scopa, qui la scopa che lo mandiamo fuori del tutto!*/
 
+
+/////////////////////////////////////////
 void setup()
 {
   Instance = this;
@@ -59,13 +63,24 @@ void setup()
   aScreen.AddPhrase("ALFONSINA", "Arialda!", 400, null);
   screens.add(aScreen);
 
+  aScreen = new DrammarScreen(2);
+  aScreen.AddPhrase("ARIALDA", "Arialda, cosa? Perché, a me, che regali m'ha mai fatto", 300, null);
+  aScreen.AddPhrase("", "la vita da quando ho aperto gli occhi? Avanti!", 400, null);   
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(1);
+  aScreen.AddPhrase("", "(Una pausa)", 400, null);
+  screens.add(aScreen);
+
+  aScreen = new DrammarScreen(2);
+  aScreen.AddPhrase("ARIALDA", "Destino, sì! Ma chiamatelo calore, che è meglio!", 300, null);
+  aScreen.AddPhrase("", "Almeno si sa prima di cominciare, dove si deve sbattere!", 400, null);
+
+  screens.add(aScreen);
+
   aScreen = new DrammarScreen(5);
-   aScreen.AddPhrase("ARIALDA", "Arialda, cosa? Perché, a me, che regali m'ha mai fatto\nla vita da quando ho aperto gli occhi? Avanti!\n(Una pausa)\nDestino, sì! Ma chiamatelo calore, che è meglio!\nAlmeno si sa prima di cominciare, dove si deve sbattere!", 300, null);
-   screens.add(aScreen);
-   
-   aScreen = new DrammarScreen(5);
-   aScreen.AddPhrase("", "", 400, null);
-   screens.add(aScreen);
+  aScreen.AddPhrase("", "", 400, null);
+  screens.add(aScreen);
 
   aScreen.start();  
   lastFrame = millis();
@@ -73,6 +88,7 @@ void setup()
 
 
 
+/////////////////////////////////////////
 void draw()
 {
   float deltaTime = millis();
@@ -107,9 +123,12 @@ void draw()
    text("This text is right aligned.",width/2,140); */
 }
 
+
+/////////////////////////////////////////
 void NextScreen()
 {
   currentScreen++;
+  drammar_play.leftMargin = 0;
   if (currentScreen < screens.size())
     screens.get(currentScreen).start();
   else 

@@ -8,6 +8,7 @@ class DrammarScreen {
 
   int state = 0;//0 = fade in, 1 = mantain, 2 = fade out
 
+  //Constructor
   DrammarScreen(float duration) {
     timeBetweenPhrases = duration;
     phrases = new ArrayList();  
@@ -15,16 +16,19 @@ class DrammarScreen {
     start = false;
   }
 
+  ////////////////////////////////////
   void AddPhrase(drammar_phrase aPhrase)
   {
     phrases.add(aPhrase);
   }
 
+  ////////////////////////////////////
   void AddPhrase(String Name, String text, int yPos, SoundFile audioFile)
   {
     phrases.add(new drammar_phrase(this, Name, text, yPos, 1, audioFile));
   }
 
+  //////////////////////////////////
   void start()
   {
     if (phrases.size() == 0)
@@ -35,6 +39,7 @@ class DrammarScreen {
     }
   }
 
+  ///////////////////////////////////7
   void Update()
   {
     if (state == 0)
@@ -60,6 +65,7 @@ class DrammarScreen {
     }
   }
 
+  /////////////////////////////////////////
   void EndFadeIn()
   {
     currentPhraseIndex++;
@@ -69,6 +75,7 @@ class DrammarScreen {
       state++;
   }
 
+  //////////////////////////////////////
   void EndFadeOut()
   {
     currentPhraseIndex--;
