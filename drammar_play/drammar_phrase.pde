@@ -1,6 +1,6 @@
  //<>//
 class drammar_phrase {
-  static final String font_name = "HelveticaNeue-48.vlw";
+  static final String font_name = "HelveticaNeue-30.vlw";
   PFont f;
   DrammarScreen screen;
   String name;
@@ -13,7 +13,7 @@ class drammar_phrase {
   import processing.sound.*;
   SoundFile sound;
 
-  drammar_phrase(DrammarScreen screen, String name, String text, int verticalPosition, float fadeTime, String soundFile)
+  drammar_phrase(DrammarScreen screen, String name, String text, int verticalPosition, float fadeTime, SoundFile soundFile)
   {
     f = loadFont("data/" + font_name);
     this.screen = screen;
@@ -21,7 +21,7 @@ class drammar_phrase {
     this.text = text;
     this.verticalPosition = verticalPosition;  
     this.fadeTime = fadeTime;
-    this.sound = new SoundFile(this, soundFile);
+    this.sound = soundFile;
   }
 
   void Update()
@@ -36,9 +36,12 @@ class drammar_phrase {
     fill(0, 0, 0, alpha);
     text(text, textWidth(name) + 15, verticalPosition);
     println(alpha);
-
+    if((multiplier > 0 && alpha == 255) || (multiplier < 0 && alpha == 0))
+      return;
     if (alpha <= 255 && alpha >= 0) {
-      alpha += multiplier * (fadeTime * (1.0f/drammar_play.frameR) * 255);
+      float prealpha = alpha;
+      alpha += multiplier * (drammar_play.frameR * 255 / fadeTime);
+      println(alpha - prealpha);
       if (alpha > 255)
       {
         alpha = 255;

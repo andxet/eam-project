@@ -1,35 +1,55 @@
 class DrammarScreen {
   ArrayList<drammar_phrase> phrases;
-  int currentTime;
+  float currentTime;
   float timeBetweenPhrases = 5;
   int currentPhraseIndex = 0;
   drammar_phrase currentPhrase; 
+  boolean start = false;
 
   int state = 0;//0 = fade in, 1 = mantain, 2 = fade out
 
-  DrammarScreen(ArrayList<drammar_phrase> phrases) {
-    this.phrases = phrases;
-    timeBetweenPhrases *= drammar_play.frameR; //Mul by the frame per second so we can increment the counter every frame
+  DrammarScreen() {
+    phrases = new ArrayList();  
+    currentTime = 0;
+    start = false;
+  }
+
+  void AddPhrase(drammar_phrase aPhrase)
+  {
+    phrases.add(aPhrase);
+  }
+  
+  void AddPhrase(String Name, String text, int yPos, SoundFile audioFile)
+  {
+    phrases.add(new drammar_phrase(aScreen, Name, text, yPos, 2, audioFile));  
+  }
+
+  void start()
+  {
     if (phrases.size() == 0)
       println("The phrases array is empty!");
-    else
+    else {
       currentPhrase = phrases.get(0);
-    currentTime = 0;
+      start = true;
+    }
   }
 
   void Update()
   {
     if (state == 0)
-      currentPhrase.Update();
-    else if (state == 1)
     {
-      currentTime++;
-      if(currentTime > timeBetweenPhrases)
+      int max = currentPhraseIndex;
+      for (int i = 0; i <= max; i++)
+        phrases.get(i).Update();
+    } else if (state == 1)    
+    {
+      for (int i = 0; i < phrases.size(); i++)
+        phrases.get(i).Update();
+      currentTime += drammar_play.frameR;
+      if (currentTime > timeBetweenPhrases)
         state++;
-    }
-    else if(state == 2)
+    } else if (state == 2)
     {
-      
     }
   }
 
